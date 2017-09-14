@@ -8,7 +8,6 @@ $(function () {
 var Controller = {
     init:function(){
         // this.getUsersForms();
-
     },
 
 
