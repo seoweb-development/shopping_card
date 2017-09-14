@@ -20,20 +20,21 @@ namespace System\MainController;
 
 
     function __construct(){
-//        return var_dump($_SESSION['session_data']['controller']);
-        /*ajax flags */
+
         $headers = apache_request_headers();
         $is_ajax = (isset($headers['X-Requested-With']) && $headers['X-Requested-With'] == 'XMLHttpRequest');
-        if(!$is_ajax) {
-            if (!isset($_COOKIE['__feer']) && $_SESSION['session_data']['controller'] != 'home'/*&& $_SESSION['session_data']['controller'] != 'forms'*/) {
-                header('Location: http:'.$_SERVER['HTTP_HOST']);
-            }
-        }
+//        if(!$is_ajax) {
+//            if (!isset($_COOKIE['__feer']) && $_SESSION['session_data']['controller'] != 'home') {
+//                header('Location: http:'.$_SERVER['HTTP_HOST']);
+//            }
+//        }
         $this->getDb();
         $this->getModel();
 
     }
-//     function indexAction();
+      protected function indexAction(){
+
+      }
 
     private function getSettings(){
 //        require_once "settings.php";
@@ -47,7 +48,7 @@ namespace System\MainController;
     }
     private function getModel(){
         $mod = ucfirst($_SESSION['session_data']['controller']).'Model';
-//return var_dump($mod);
+
         $file = 'applications/modules/'.$_SESSION['session_data']['controller'].'/src/'.$mod.'.php';
 
 //        return var_dump($file);
@@ -56,10 +57,10 @@ namespace System\MainController;
 
         }
 
-//        require_once $mod.'.php';
+
 
         $called_model = "Applications\Modules\\$mod";
-//        return var_dump($called_model);
+
         require_once $mod.'.php';
         $this->_model = new $called_model();
     }

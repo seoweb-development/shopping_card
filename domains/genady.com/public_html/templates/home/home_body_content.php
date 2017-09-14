@@ -3,7 +3,7 @@
 
 
 
-home body
+<?php  echo $page_data['page']?>
 
 
 </div>

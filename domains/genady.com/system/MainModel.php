@@ -9,7 +9,7 @@
 namespace system;
 
 
-class MainModel
+ abstract class MainModel
 {
     protected $_db;
     protected $_controller;
@@ -21,9 +21,9 @@ class MainModel
     protected static $stat_db;
 
     function __construct(){
-//return var_dump($_SERVER["HTTP_HOST"]);
 
-//        $this->_db = DbProcessor::getInstance()->db_connect;
+
+        $this->_db = DbProcessor::getInstance()->db_connect;
 //        self::$stat_db = $this->_db;
 //
         @$this->getModuleName();
@@ -33,20 +33,16 @@ class MainModel
         $headers = apache_request_headers();
         $is_ajax = (isset($headers['X-Requested-With']) && $headers['X-Requested-With'] == 'XMLHttpRequest');
         /*--------------*/
-//return var_dump($is_ajax);
 ////Check if AJAX and  create Objects by the check result
             if (!$is_ajax && $this->_controller !='forms' && $this->_controller !='files') {
                 $this->getPoints();
                 $this->getStyles();
                 $this->getScripts();
-//                return;
-//
-                 $this->pageBuilder();
+                $this->pageBuilder();
             }
-
-//        return var_dump($this->_styles);
-
     }
+    protected abstract  function getPageData();
+
 
     private function getModuleName(){
         $this->_controller = $_SESSION['session_data']['controller'];
@@ -75,8 +71,8 @@ class MainModel
 
 
         $general_style ='./styles/general.css';
-
-        $styles =  '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> ';
+         $styles = '';
+         $styles .=  '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> ';
 
 
         $styles .= '<link rel="stylesheet" type="text/css" href="'.$general_style.'"> ';
@@ -108,7 +104,7 @@ class MainModel
 
         $scripts = '<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>';
         $scripts.=  '<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>';
-        $scripts.=  '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>';
+//        $scripts.=  '<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>';
         $scripts.=  '<script src="'.$general_script.'"></script>';
 
 //
@@ -126,6 +122,8 @@ class MainModel
 
 
     private function pageBuilder(){
+        $page_data = $this->getPageData();
+
         $layouts_templates = require_once $this->_points.'/public_html/layouts/layouts.ini.php';
         $layouts_dir = $this->_points.'/public_html/layouts/layouts_templates';
         $module_name = $this->_controller;
@@ -148,24 +146,6 @@ class MainModel
         else{
             $included_templates[2] = $layouts_templates['general']['footer'];
         }
-//        foreach($layouts_templates as $template_type => $template_arr){
-//            foreach($template_arr as $module => $url )
-//            if($module == $this->_controller){
-//                if(is_file(realpath( $layouts_dir.$url))){
-//                    if($template_type =='headers')
-//                        $included_templates[0] = $url;
-//                    if($template_type =='contents')
-//                        $included_templates[1] = $url;
-//                    if($template_type =='footers')
-//                        $included_templates[2] = $url;
-//                }
-//
-//            }
-//        }
-//return var_dump($included_templates);
-
-
-
 
         ob_start('ob_gzhandler');
 for($f=0;$f<count($included_templates);$f++) {

@@ -15,13 +15,22 @@ class DbProcessor
     public $db_connect;
     private function __construct()
     {
-        $this->db_connect = $this->getDb();
+//
     }
+    public function __get($name)
+    {
+        // TODO: Implement __get() method.
+    }
+    public function __set($name, $value)
+    {
+        // TODO: Implement __set() method.
+    }
+
     private function getDb(){
          return new \PDO(
-             "mysql:host=localhost;dbname=helen_new",
-             'root',
-             '1234'
+             "mysql:host=localhost;dbname=genady_db",
+             'genady_db',
+             'genady'
 
              );
     }

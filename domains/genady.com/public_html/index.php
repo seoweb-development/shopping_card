@@ -5,11 +5,11 @@
 // * Date: 6/28/15
 // * Time: 10:45 PM
 // */
-//phpinfo();
+session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-session_start();
+
 //Genady commit check =================================
 set_include_path(get_include_path().
     PATH_SEPARATOR.'applications'.
