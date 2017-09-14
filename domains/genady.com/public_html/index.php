@@ -22,16 +22,7 @@ set_include_path(get_include_path().
     PATH_SEPARATOR.'../public_html/templates'.
     PATH_SEPARATOR.'../public_html'.
     PATH_SEPARATOR.'../public_html/styles'.
-//             PATH_SEPARATOR.'application/controllers/ajax_controllers'.
-//    PATH_SEPARATOR.'applications/models'.
-//    PATH_SEPARATOR.'applications/models/static_models'.
-//    PATH_SEPARATOR.'applications/lib'.
-//    PATH_SEPARATOR.'applications/lib/db'.
-//    PATH_SEPARATOR.'applications/lib/ini_file'.
-//    PATH_SEPARATOR.'applications/lib/orders'.
-//    PATH_SEPARATOR.'applications/lib/users'.
     PATH_SEPARATOR.'../system'.
-//    PATH_SEPARATOR.'./system'.
     PATH_SEPARATOR.'../public_html/layouts'.
     PATH_SEPARATOR.'../public_html/layouts/layouts_templates'.
     PATH_SEPARATOR.'../public_html/layouts/layouts_templates/general'.
