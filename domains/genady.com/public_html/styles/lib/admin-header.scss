@@ -1,0 +1,24 @@
+.admin_header{
+  height: 60px;
+  background-color: $boxes_background;
+  border-bottom: solid 1px $borders_color ;
+  .admin_header_menu{
+    height: 100%;
+    width: 40%;
+    margin-left: 2%;
+
+    .one_menu_element{
+      float: left;
+      height: 100%;
+      line-height: 60px;
+      margin-left: 2%;
+      font-size: 100%;
+      cursor: pointer;
+      font-weight: bold;
+      opacity: 0.6;
+    }
+    .one_menu_element:hover{
+      opacity: 1;
+    }
+  }
+}

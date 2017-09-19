@@ -61,14 +61,14 @@ class FrontController {
 //            header('Location:./home');
 //        }
     }
-    private function getAjaxController($controller_name){
-
-        require_once "ajax_controllers/$controller_name.php";
-
-        $class_name = "\application\controllers\ajax_controllers\\$controller_name";
-
-        return $class_name;
-    }
+//    private function getAjaxController($controller_name){
+//
+//        require_once "ajax_controllers/$controller_name.php";
+//
+//        $class_name = "\application\controllers\ajax_controllers\\$controller_name";
+//
+//        return $class_name;
+//    }
 
     private function getStaticController($controller_name)
     {
@@ -111,7 +111,7 @@ if(!$this->controller|| !is_dir("../modules/$this->controller"))
 
 $class_name = $this->getStaticController($controller_name);
 //return var_dump($class_name);
-    require_once $controller_name.'.php';
+//    require_once $controller_name.'.php';
     $contr = new $class_name();
 
 
@@ -121,7 +121,7 @@ if(method_exists($contr, $action_name)) {
 }else {
 
 //    return $contr->indexAction();
-    header ('Location: http://localhost/s_b/'.$this->controller/*.'/index'*/);
+    header ('Location: http://'.$_SERVER['HTTP_HOST'].'/'.$this->controller/*.'/index'*/);
 }
 
 

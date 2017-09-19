@@ -14,12 +14,14 @@ error_reporting(E_ALL);
 set_include_path(get_include_path().
     PATH_SEPARATOR.'applications'.
     PATH_SEPARATOR.'../modules/home/src'.
-    PATH_SEPARATOR.'applications/modules/forms/src'.
-    PATH_SEPARATOR.'applications/modules/users/src'.
+    PATH_SEPARATOR.'../modules/admin/src'.
+    PATH_SEPARATOR.'../modules/forms/src'.
+    PATH_SEPARATOR.'../modules/users/src'.
     PATH_SEPARATOR.'applications/modules/accounts/src'.
     PATH_SEPARATOR.'applications/modules/orders/src'.
     PATH_SEPARATOR.'applications/modules/files/src'.
     PATH_SEPARATOR.'../public_html/templates'.
+    PATH_SEPARATOR.'../public_html/templates/admin'.
     PATH_SEPARATOR.'../public_html'.
     PATH_SEPARATOR.'../public_html/styles'.
     PATH_SEPARATOR.'../system'.

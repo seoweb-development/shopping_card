@@ -9,6 +9,7 @@ General.init();
 var General = {
 
   init:function () {
+
      // this.getAdressString();
   },
   getAdressString:function () {

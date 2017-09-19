@@ -1,0 +1,23 @@
+@import "../lib/vars";
+.admin_wrapper{
+  .admin_body_content{
+    height: 100%;
+    @import "../lib/admin-header";
+    .admin_components{
+      width: 99%;
+      height: calc(100% - 80px);
+      border: solid 1px $borders_color;
+      margin: 7px auto;
+      .hiden_comp{
+        display:none;
+      }
+      .items_component, .pages_component, .menu_component{
+        width: 100%;
+        height: 100%;
+      }
+
+
+    }
+
+  }
+}

@@ -49,7 +49,7 @@ namespace System\MainController;
     private function getModel(){
         $mod = ucfirst($_SESSION['session_data']['controller']).'Model';
 
-        $file = 'applications/modules/'.$_SESSION['session_data']['controller'].'/src/'.$mod.'.php';
+        $file = '../modules/'.$_SESSION['session_data']['controller'].'/src/'.$mod.'.php';
 
 //        return var_dump($file);
         if(!is_file($file)){

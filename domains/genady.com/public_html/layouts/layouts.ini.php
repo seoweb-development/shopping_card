@@ -16,5 +16,10 @@ return array(
 //        'header' => 'layouts_templates/header.php',
 //        'content' => 'layouts_templates/content.php',
 //        'futer' => 'layouts_templates/futer.php'
+    ),
+    'admin' =>array(
+        'header' => 'layouts_templates/admin/header.php',
+        'content' => 'layouts_templates/admin/content.php',
+        'footer' => 'layouts_templates/admin/footer.php'
     )
 );

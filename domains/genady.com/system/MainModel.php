@@ -57,8 +57,8 @@ namespace system;
     private function getPoints(){
         $url_counter = count(explode('/',trim($_SERVER['REQUEST_URI'], '/')));
 
-        $this->_points = $url_counter==1?'..':'.';
-
+//        $this->_points = $url_counter==1?'..':'.';
+        $this->_points = '..';
     }
 
     private function getStyles(){
@@ -70,9 +70,9 @@ namespace system;
         $dir = scandir($styles_dir);
 
 
-        $general_style ='./styles/general.css';
+        $general_style =$points.'/styles/general.css';
          $styles = '';
-         $styles .=  '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> ';
+//         $styles .=  '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> ';
 
 
         $styles .= '<link rel="stylesheet" type="text/css" href="'.$general_style.'"> ';
@@ -80,7 +80,7 @@ namespace system;
 
         foreach($dir as $style){
 
-            $inc_style_file = './styles/'.$this->_controller.'/'.$style;
+            $inc_style_file = $points.'/styles/'.$this->_controller.'/'.$style;
             if(!strpos($style, '.css.map') && strpos($style, '.css')){
 
                     $styles .= '<link rel="stylesheet" type="text/css" href="' . $inc_style_file . '">';
@@ -100,7 +100,7 @@ namespace system;
 
         $dir = scandir($scripts_dir);
 
-        $general_script = './js/general.js';
+        $general_script = $points.'/js/general.js';
 
         $scripts = '<script src="//ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>';
         $scripts.=  '<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/jquery-ui.min.js"></script>';
@@ -109,7 +109,7 @@ namespace system;
 
 //
         foreach($dir as $script){
-            $inc_script_file = './js/'.$this->_controller.'/'.$script;
+            $inc_script_file = $points.'/js/'.$this->_controller.'/'.$script;
             if(strpos($script, '.js')){
                 $scripts.= '<script src="'.$inc_script_file.'"></script>';
             }
@@ -125,22 +125,24 @@ namespace system;
         $page_data = $this->getPageData();
 
         $layouts_templates = require_once $this->_points.'/public_html/layouts/layouts.ini.php';
+//        return var_dump($this->_controller);
         $layouts_dir = $this->_points.'/public_html/layouts/layouts_templates';
         $module_name = $this->_controller;
         $included_templates = array();
-        if(isset($layouts_templates[$module_name]['header']) && is_file(realpath( $layouts_dir.$layouts_templates[$module_name]['header']) )){
+//        return var_dump(realpath( $layouts_dir.$layouts_templates[$module_name]['header']));
+        if(isset($layouts_templates[$module_name]['header']) /*&& is_file(realpath( $layouts_dir.$layouts_templates[$module_name]['header']) )*/){
             $included_templates[0] = $layouts_templates[$module_name]['header'];
             }
             else{
                 $included_templates[0] = $layouts_templates['general']['header'];
             }
-        if(isset($layouts_templates[$module_name]['content']) && is_file(realpath( $layouts_dir.$layouts_templates[$module_name]['content']) )){
+        if(isset($layouts_templates[$module_name]['content'])/* && is_file(realpath( $layouts_dir.$layouts_templates[$module_name]['content']) )*/){
             $included_templates[1] = $layouts_templates[$module_name]['content'];
         }
         else{
             $included_templates[1] = $layouts_templates['general']['content'];
         }
-        if(isset($layouts_templates[$module_name]['footer']) && is_file(realpath( $layouts_dir.$layouts_templates[$module_name]['futer']) )){
+        if(isset($layouts_templates[$module_name]['footer']) /*&& is_file(realpath( $layouts_dir.$layouts_templates[$module_name]['futer']) )*/){
             $included_templates[2] = $layouts_templates[$module_name]['footer'];
         }
         else{
